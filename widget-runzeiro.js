@@ -1082,9 +1082,9 @@
                 imp('color', cor);
                 imp('border', '1.5px solid ' + cor);
                 imp('box-shadow', 'none');
-                // mais perto do Comprar: compensa a margem de baixo dele
+                // Runzeiro: 10px de respiro entre o Comprar e o provador (21/10)
                 const mb = parseFloat(cs.marginBottom) || 0;
-                imp('margin', (mb > 8 ? -(mb - 8) : 0) + 'px 0 14px');
+                imp('margin', Math.max(0, 10 - mb) + 'px 0 14px');
                 imp('opacity', '1');
                 btn.querySelectorAll('svg, i, img').forEach(el => { el.style.color = 'inherit'; el.style.fill = 'currentColor'; });
             } catch (e) {}
