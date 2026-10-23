@@ -1993,7 +1993,10 @@ setInterval(function(){var el=document.getElementById('q-step-error');if(!el)ret
                             var grupo = [];
                             if (ini >= 0) { var prox = idxVar.filter(function (i) { return i > ini; })[0]; grupo = gal.slice(ini + 1, prox === undefined ? gal.length : prox); }
                             // demais fotos da galeria, menos as vinculadas a OUTRAS variantes (com certeza outra cor)
-                            var resto = gal.filter(function (g, i) { return i !== ini && idxVar.indexOf(i) < 0 && grupo.indexOf(g) < 0; });
+                            // 23/10/2026 (Runzeiro): galeria organizada por cor — as fotos que vêm DEPOIS da foto de outra
+                            // variante são do grupo dela (outra cor) e ficam de fora. Só entram as genéricas antes da 1ª variante.
+                            var _iniVar = idxVar.length ? idxVar[0] : gal.length;
+                            var resto = gal.filter(function (g, i) { return i !== ini && i < _iniVar && grupo.indexOf(g) < 0; });
                             var cand = grupo.concat(resto).map(abs).slice(0, 10);
                             // fotos com rosto: primeiro as do grupo, depois as da galeria (ate 3)
                             var rostos = [];
